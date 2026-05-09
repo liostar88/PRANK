@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Music Player</title>
+
+<style>
+body{
+    margin:0;
+    background:#000;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    font-family:sans-serif;
+}
+
+button{
+    padding:20px 40px;
+    font-size:25px;
+    border:none;
+    border-radius:15px;
+    background:#00ff88;
+    color:black;
+    font-weight:bold;
+    box-shadow:0 0 30px #00ff88;
+}
+</style>
+</head>
+<body>
+
+<button onclick="playMusic()">PLAY</button>
+
+<audio id="music" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function playMusic(){
+    let audio = document.getElementById("music");
+
+    audio.volume = 1.0;
+    audio.play();
+}
+</script>
+
+</body>
+</html>
