@@ -4,46 +4,139 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Music Player</title>
+<title>NEON MUSIC</title>
 
 <style>
-body{
+*{
     margin:0;
-    background:#000;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
     height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
+    background:black;
     overflow:hidden;
     font-family:sans-serif;
 }
 
+/* Glow background */
+body::before{
+    content:'';
+    position:absolute;
+    width:400px;
+    height:400px;
+    background:#00ff88;
+    border-radius:50%;
+    filter:blur(180px);
+    opacity:0.4;
+    animation:gerak 5s infinite alternate;
+}
+
+@keyframes gerak{
+    from{
+        transform:translate(-150px,-100px);
+    }
+    to{
+        transform:translate(150px,100px);
+    }
+}
+
+.container{
+    position:relative;
+    z-index:2;
+    text-align:center;
+}
+
+h1{
+    color:white;
+    margin-bottom:25px;
+    font-size:40px;
+    text-shadow:0 0 20px #00ff88;
+    animation:kedip 1s infinite alternate;
+}
+
+@keyframes kedip{
+    from{
+        opacity:0.6;
+    }
+    to{
+        opacity:1;
+    }
+}
+
 button{
-    padding:20px 40px;
+    padding:20px 50px;
     font-size:25px;
     border:none;
     border-radius:15px;
     background:#00ff88;
     color:black;
     font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
     box-shadow:0 0 30px #00ff88;
+}
+
+button:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 50px #00ff88;
+}
+
+.info{
+    color:white;
+    margin-top:20px;
+    opacity:0.7;
 }
 </style>
 </head>
 <body>
 
-<button onclick="playMusic()">PLAY</button>
+<div class="container">
+    <h1>NEON MUSIC</h1>
+
+    <button id="btn" onclick="playMusic()">
+        PLAY
+    </button>
+
+    <div class="info">
+        Volume Website: MAX
+    </div>
+</div>
 
 <audio id="music" loop>
-     <source src="prank.mp3" type="audio/mpeg">
+    <source src="prank.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 function playMusic(){
-    let audio = document.getElementById("music");
 
+    let audio = document.getElementById("music");
+    let btn = document.getElementById("btn");
+
+    // volume website maksimum
     audio.volume = 1.0;
+
+    // play music
     audio.play();
+
+    // loop terus
+    audio.loop = true;
+
+    // ubah tombol
+    btn.innerHTML = "NOW PLAYING";
+
+    // disable tombol
+    btn.disabled = true;
+
+    // hilangkan tombol
+    setTimeout(()=>{
+        btn.style.display = "none";
+    },1000);
+
 }
 </script>
 
